@@ -1,7 +1,7 @@
 import IngredientModel from '../models/ingredient-model';
 
 // Get all ingredients as objects and save to array
-const getAllIngredients = db => {
+export const getAllIngredients = db => {
   return db
     .select('*')
     .from('ingredient')
