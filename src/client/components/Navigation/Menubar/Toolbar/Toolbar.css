@@ -1,0 +1,92 @@
+.toolbar {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.floatToolbar {
+  height: 50px;
+}
+
+.stickyToolbar {
+  height: 112px;
+}
+
+.floatNavbar {
+  background: #fff;
+  justify-content: center;
+  border-bottom: 1px solid rgba(78, 90, 107, 0.3);
+}
+
+.toolbar_navigation {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 3.5rem;
+}
+
+.stickyToolbar_navigation {
+  max-width: 1209px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.toolbar_navigation-items {
+  width: 40%;
+}
+
+.toolbar_navigation-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.stickyToolbar_navigation-items ul {
+  justify-content: space-evenly;
+}
+
+.floatToolbar_navigation-items ul {
+  justify-content: space-around;
+}
+
+.toolbar_navigation-items li {
+  padding: 0 1rem;
+}
+
+.toolbar_navigation-items a {
+  text-decoration: none;
+  color: #898d93;
+}
+
+.toolbar_navigation-items a:hover,
+/* .toolbar_navigation-items a:active{ */
+.toolbar_navigation-items .active {
+  color: orange;
+}
+
+@media only screen and (max-width: 768px) {
+  .toolbar_navigation-items,
+  .toolbar {
+    background: none;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1079px) {
+  .toolbar_toggle-button {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .toolbar_toggle-button {
+    display: none;
+  }
+  /*     .toolbar_navigation{
+      padding: 0 10rem;
+    } */
+}

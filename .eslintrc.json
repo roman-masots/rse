@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,8 +17,9 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
+    "import/no-unresolved": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -28,6 +29,8 @@
     "implicit-arrow-linebreak": "off",
     "comma-dangle": "off",
     "indent": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
