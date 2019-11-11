@@ -1,18 +1,29 @@
 const webpack = require('webpack');
+const webpackTemplate = require('html-webpack-template');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 const frontConfig = {
   target: 'web',
+  // mode: 'production', //for tree shaking
   entry: ['react-hot-loader/patch', './src/client/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[chunkhash].js',
   },
   plugins: [
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify('5fa3b9'),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
     new HtmlWebpackPlugin({
-      template: require('html-webpack-template'),
+      template: webpackTemplate,
       inject: false,
       appMountId: 'app',
     }),
@@ -33,8 +44,17 @@ const frontConfig = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            // options: {   //for tree shaking
+            //   presets: [
+            //     ['es2015', { modules: false }] // IMPORTANT for tree shaking
+            //   ]
+            // }
+          }
+        ]
       },
       {
         test: /\.css$/,
@@ -65,10 +85,11 @@ const frontConfig = {
   },
   devServer: {
     contentBase: './dist',
-    port: 8080,
-    open: true,
+    // hot: true,
+    port: 3000,
+    // open: true,
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/api': 'http://localhost:3001',
     },
   },
 };
